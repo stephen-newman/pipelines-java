@@ -32,4 +32,5 @@ steps:
     script: |
       # Write your commands here
       
-      ls -la
+      ls -la target
+      ls -la target/site/jacoco
