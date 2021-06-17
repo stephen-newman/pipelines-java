@@ -6,11 +6,7 @@
 
 trigger:
 - master
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'JaCoCo'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/pipelines-java/target/site/jacoco/jacoco.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/pipelines-java/target/site/jacoco/'
+
 pool:
   vmImage: 'ubuntu-latest' # other options: 'macOS-10.14', 'vs2017-win2016'
 
@@ -25,3 +21,8 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean package'
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'JaCoCo'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/pipelines-java/target/site/jacoco/jacoco.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/pipelines-java/target/site/jacoco/'
