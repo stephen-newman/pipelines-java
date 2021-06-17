@@ -2,10 +2,15 @@
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/java?view=azure-devops#next-steps
 
 trigger:
 - master
-
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'JaCoCo'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/pipelines-java/target/site/jacoco/jacoco.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/pipelines-java/target/site/jacoco/'
 pool:
   vmImage: 'ubuntu-latest' # other options: 'macOS-10.14', 'vs2017-win2016'
 
